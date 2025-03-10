@@ -33,6 +33,46 @@
             name: 'Dark Mode',
             description: 'Toggle dark mode on any website.',
             code: "javascript:(function(){document.body.style.filter=document.body.style.filter?'':'invert(1)';})();"
+          },
+          {
+            name: 'Dark Mode 2',
+            description: '(Single use) an alternative method of toggling dark mode on any website.',
+            code: "javascript:document.querySelectorAll('*').forEach(e=>e.setAttribute('style','background-color:#222;background-image:none;color:#'+(/^A|BU/.test(e.tagName)?'36c;text-decoration:underline;':'eee;')+e.getAttribute('style')))"
+          },
+          {
+            name: 'Stats.js',
+            description: 'Allows you to view your FPS, RAM, and MS.',
+            code: "javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()"
+          },
+          {
+            name: 'Edit any Page',
+            description: 'Allows you to edit the text of any webpage.',
+            code: 'javascript:console.log(document.body.contentEditable="true"==document.body.contentEditable?"false":"true");' 
+          },
+          {
+            name: 'X-Ray Goggles',
+            description: 'Allows you to view and edit the source code of any website (like a more powerful version of "Edit any page").',
+            code: "javascript:(function () {var script=document.createElement('script');script.src='https://x-ray-goggles.mouse.org/webxray.js';script.className='webxray';script.setAttribute('data-lang','en-US');script.setAttribute('data-baseuri','https://x-ray-goggles.mouse.org');document.body.appendChild(script);}())"
+          },
+          {
+            name: 'History Flooder',
+            description: 'Floods your search history with the website you are currently on.',
+            code: 'javascript:var num=prompt("History flood amount:");done=false;x=window.location.href;for (var i=1; i<=num; i++){history.pushState(0, 0, i==num?x:i.toString());if(i==num){done=true}}if(done===true){alert(%22History%20flood%20successful!%20%22+window.location.href+%22%20now%20appears%20in%20your%20history%20%22+num+(num==1?%22%20time.%22:%22%20times.%20(ajaxdev)%22))}'
+          },
+          {
+            name: 'Piano',
+            description: 'Adds a piano to the bottom of the website.',
+            code: "javascript:document.querySelectorAll('*').forEach(e=>e.setAttribute('style','background-color:#222;background-image:none;color:#'+(/^A|BU/.test(e.tagName)?'36c;text-decoration:underline;':'eee;')+e.getAttribute('style')))"
+          },
+          {
+            name: 'Developer Console',
+            description: 'Adds all features of the developer console to whatever page your on.',
+            code: "javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()"
+          },
+          {
+            name: 'Stats.js',
+            description: 'Allows you to view your FPS, RAM, and MS.',
+            code: 'javascript:(function()%7B(function() %7Bvar x %3D document.createElement("script")%3Bx.src %3D "https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2FSnowLord7%2Fdevconsole%40master%2Fmain.js"%3Bx.onload %3D alert("Loaded Developer Console!")%3Bdocument.head.appendChild(x)%3B%7D)()%7D)()'
           }
         ]
       };
