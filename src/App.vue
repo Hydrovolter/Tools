@@ -7,7 +7,7 @@ const showMenu = ref(false);
 const searchBox = ref(null);
 const routes = ref([
   { name: "About this", path: "/" },
-  { name: "About:blank embedder", path: "/aboutblank" },
+  { name: "about:blank Embedder", path: "/aboutblank" },
   { name: "Browser Info finder", path: "/browserinfo" },
   { name: "QR Code Maker", path: "/qrcode" },
   { name: "User Agent Info", path: "/useragent" },
@@ -17,7 +17,7 @@ const routes = ref([
   { name: "URL Opener", path: "/urlopen" },
   { name: "Coin flip", path: "/coinflip" },
   { name: "Countdown Timer", path: "/timer" },
-  { name: "Reaction Time test", path: "/reactiontime" },
+  { name: "Reaction Time Test", path: "/reactiontime" },
   { name: "Current Time", path: "/currenttime" },
   { name: "Base64 Converter", path: "/base64" }
 ]);
