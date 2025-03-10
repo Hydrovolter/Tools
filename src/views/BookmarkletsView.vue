@@ -62,7 +62,7 @@
           {
             name: 'Piano',
             description: 'Adds a piano to the bottom of the website.',
-            code: "javascript:document.querySelectorAll('*').forEach(e=>e.setAttribute('style','background-color:#222;background-image:none;color:#'+(/^A|BU/.test(e.tagName)?'36c;text-decoration:underline;':'eee;')+e.getAttribute('style')))"
+            code: 'javascript:void(document.head.appendChild(document.createElement("script")).src="https://cdn.jsdelivr.net/gh/Krazete/bookmarklets/piano.min.js")'
           },
           {
             name: 'Stats.js',
