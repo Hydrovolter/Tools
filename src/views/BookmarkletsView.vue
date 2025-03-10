@@ -1,6 +1,9 @@
 <template>
     <div class="bookmarklets-view">
       <h1 class="text-xl font-bold mb-4">Bookmarklets</h1>
+      <p>Bookmarklets are browser bookmarks that execute JavaScript (code) instead of opening a webpage. They can do some pretty cool things with the website you are on, as you will see below.</p>
+      <p>Drag the bookmarklet buttons to your bookmarks bar, and click them on the website you want to use them on.</p>
+      <p>You can click the buttons below to test it out on this site!</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <div v-for="bookmarklet in bookmarklets" :key="bookmarklet.name" class="p-4 border rounded-lg shadow">
           <h2 class="text-lg font-semibold">{{ bookmarklet.name }}</h2>
