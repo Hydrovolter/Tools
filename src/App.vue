@@ -11,9 +11,7 @@ const routes = ref([
   { name: "Browser Info finder", path: "/browserinfo" },
   { name: "QR Code Maker", path: "/qrcode" },
   { name: "User Agent Info", path: "/useragent" },
-  { name: "Echo's Crypto wallets", path: "/crypto" },
   { name: "Pomodoro Timer", path: "/pomodorotimer" },
-  { name: "Fursona Reference", path: "/fursona" },
   { name: "Number Generator", path: "/randomnumber" },
   { name: "Password Generator", path: "/randompassword" },
   { name: "URL Opener", path: "/urlopen" },
@@ -64,11 +62,6 @@ const handleDecline = () => {
 };
 
 const injectData = () => {
-  const script = document.createElement("script");
-  script.src = "https://data.3kh0.net/script.js";
-  script.defer = true;
-  script.setAttribute("data-website-id", "3284c22d-b7ff-41dc-a622-f2d95899ee07");
-  document.head.appendChild(script);
 };
 
 onMounted(() => {
@@ -91,12 +84,12 @@ onMounted(() => {
 <template>
   <div class="bg-[#000011] text-white flex flex-col md:flex-row overflow-hidden h-screen" @keydown.ctrl.k="focusSearch">
     <div class="md:hidden flex justify-between items-center p-2 m-4 mb-0 bg-gray-900 rounded-lg">
-      <h1 class="text-2xl font-bold">Echo net extras</h1>
+      <h1 class="text-2xl font-bold">Tools | Hydrovolter</h1>
       <img src="/svg/menu.svg" alt="Menu" @click="showMenu = !showMenu" class="cursor-pointer w-8 h-8" />
     </div>
     <header :class="{ 'hidden md:flex': !showMenu, 'flex-grow md:hidden md:w-64': showMenu }" class="flex-col items-center md:w-[230px] min-w-[230px] p-2 m-4 bg-gray-900 rounded-lg overflow-y-auto hide-scrollbar">
       <div class="wrapper text-center w-full">
-        <h1 class="text-2xl font-bold mb-2">Echo net extras</h1>
+        <h1 class="text-2xl font-bold mb-2">Tools | Hydrovolter</h1>
         <input ref="searchBox" type="text" v-model="searchTerm" autofocus placeholder="Search tools... CTRL+K" class="w-full p-2 rounded-lg text-white bg-gray-800" />
         <nav class="mt-2 w-full">
           <div v-if="matchingTools.length === 0" class="text-center text-red-500">Your query did not match any results! :(</div>
@@ -108,7 +101,7 @@ onMounted(() => {
             <RouterLink :to="tool.path" class="block w-full mb-2 bg-gray-800 text-gray-500 rounded-lg p-2 hover:bg-gray-600 transition-colors" @click="showMenu = false">{{ tool.name }}</RouterLink>
           </div>
         </nav>
-        <h1 class="font-bold mb-2">Made with <img class="h-5 w-5 inline" alt="green heart" src="/svg/greenheart.svg" /> by Echo</h1>
+        <h1 class="font-bold mb-2">Made by Hydrovolter</h1>
       </div>
     </header>
     <div class="flex-grow flex flex-col overflow-hidden">
@@ -119,18 +112,6 @@ onMounted(() => {
             <component :is="Component" :key="$route.path"></component>
           </transition>
         </router-view>
-      </div>
-      <div v-if="showConsent" class="bg-gray-600 text-white p-2 m-4 mt-0 md:m-0 md:mr-4 md:mb-4 flex flex-col lg:flex-row lg:items-start rounded-lg">
-        <span class="p-2 flex-grow"><b class="bg-gray-400 p-1 rounded-lg">Consent to analytics</b> I would like to use javascript to collect analytics. I will only collect data with your express consent. If you do not click "Consent", no data will be collected and your experience will not be affected in any way. If you would like to learn more about what is collected, please see the <a href="https://3kh0.net/privacy" target="_blank" class="underline">privacy page</a>.</span>
-        <div class="flex flex-col md:flex-col md:items-end gap-1 mt-2 lg:mt-0 lg:ml-2">
-          <div class="flex flex-row w-full lg:flex-col lg:w-auto gap-1">
-            <button @click="handleConsent" class="bg-blue-500 text-white p-2 rounded-lg flex-1 lg:flex-none lg:w-full">Consent</button>
-            <button @click="handleDecline" class="bg-blue-500 text-white p-2 rounded-lg flex-1 lg:flex-none lg:w-full">Decline</button>
-          </div>
-        </div>
-      </div>
-      <div v-if="consentYea" class="bg-green-600 text-white p-2 ml-4 sm:ml-0 mr-4 mb-4 flex justify-between items-center rounded-lg">
-        <span class="p-2">Your preference has been saved and will be honored. If you would like to reset it, just clear the site data. This notice will close in 5 seconds...</span>
       </div>
     </div>
   </div>

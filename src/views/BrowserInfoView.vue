@@ -4,9 +4,6 @@ fetch("https://wtfismyip.com/json") // i love this api
   .then((data) => {
     const ipAddrElement = document.getElementById("ipAddr");
     ipAddrElement.innerHTML = `IP Address: ${data.YourFuckingIPAddress}`; 
-    // swearing? 
-    // in my christan vue app?
-    // it is more likely than you think
 
     const resultElement = document.getElementById("result");
     const browserInfo = `
@@ -46,7 +43,7 @@ fetch("https://wtfismyip.com/json") // i love this api
       <div id="result" class="mb-2"></div>
       <p>Data provided by <a href="https://wtfismyip.com/" class="font-semibold text-blue-500" target="_blank">wtfismyip</a></p>
       <hr class="my-4" />
-      <p class="text-sm">Use a VPN to protect your privacy online. I recommend <a href="https://mullvad.net/en/vpn" class="font-semibold text-blue-500" target="_blank">Mullvad VPN</a>, it is secure, private, and you don't even use a email to sign up. Pay a flat rate of 5€ per month.</p> <!--#ad-->
+      <p class="text-sm">Use a VPN to protect your privacy online. Or use my <a href="https://proxy.hydrovolter.com/" class="font-semibold text-blue-500" target="_blank">proxy</a> to unblock websites at school.</p> <!--#ad-->
       <div id="progress-bar" class="h-1 bg-blue-500 absolute bottom-0 left-0 rounded-lg"></div>
     </div>
   </main>
