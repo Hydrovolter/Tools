@@ -10,7 +10,7 @@
             :href="bookmarklet.code"
             :draggable="true"
             @dragstart="(event) => onDragStart(event, bookmarklet.code)"
-          >Drag to Bookmarks</a>
+          >{{ bookmarklet.name }}</a>
         </div>
       </div>
     </div>
