@@ -8,6 +8,7 @@ const searchBox = ref(null);
 const routes = ref([
   { name: "About this", path: "/" },
   { name: "about:blank Embedder", path: "/aboutblank" },
+  { name: "Bookmarklets", path: "/bookmarklets" },
   { name: "Browser Info finder", path: "/browserinfo" },
   { name: "QR Code Maker", path: "/qrcode" },
   { name: "User Agent Info", path: "/useragent" },
