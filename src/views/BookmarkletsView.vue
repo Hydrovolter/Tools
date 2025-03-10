@@ -173,7 +173,7 @@
           {
             name: "Asteroids",
             description: "Play as a spaceship and destroy any website you like.",
-            code: "javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='http://www.websiteasteroids.com/asteroids.min.js';void(0);"
+            code: "javascript:var s = document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='https://hydrovolter.com/assets/code/asteroids.min.js';void(0);"
           },
           {
             name: "No Cookies",
