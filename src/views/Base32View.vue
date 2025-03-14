@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import { encode, decode } from "base32";
 
 export default {
   data() {
