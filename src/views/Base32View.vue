@@ -32,7 +32,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -42,13 +41,42 @@ export default {
     };
   },
   methods: {
+    encodeBase32(input) {
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+      let bits = "";
+      let output = "";
+      for (let i = 0; i < input.length; i++) {
+        bits += input[i].charCodeAt(0).toString(2).padStart(8, '0');
+      }
+      while (bits.length % 5 !== 0) {
+        bits += "0";
+      }
+      for (let i = 0; i < bits.length; i += 5) {
+        output += alphabet[parseInt(bits.substr(i, 5), 2)];
+      }
+      return output;
+    },
+    decodeBase32(input) {
+      const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+      let bits = "";
+      let output = "";
+      for (let i = 0; i < input.length; i++) {
+        let index = alphabet.indexOf(input[i].toUpperCase());
+        if (index === -1) return "Error: Invalid input";
+        bits += index.toString(2).padStart(5, '0');
+      }
+      for (let i = 0; i + 8 <= bits.length; i += 8) {
+        output += String.fromCharCode(parseInt(bits.substr(i, 8), 2));
+      }
+      return output;
+    },
     convert() {
       try {
         if (this.sepLines) {
           const lines = this.plaintext.split("\n");
-          this.base32 = lines.map((line) => encode(line)).join("\n");
+          this.base32 = lines.map((line) => this.encodeBase32(line)).join("\n");
         } else {
-          this.base32 = encode(this.plaintext);
+          this.base32 = this.encodeBase32(this.plaintext);
         }
       } catch (e) {
         this.base32 = "Error: Invalid input";
@@ -58,9 +86,9 @@ export default {
       try {
         if (this.sepLines) {
           const lines = this.base32.split("\n");
-          this.plaintext = lines.map((line) => decode(line)).join("\n");
+          this.plaintext = lines.map((line) => this.decodeBase32(line)).join("\n");
         } else {
-          this.plaintext = decode(this.base32);
+          this.plaintext = this.decodeBase32(this.base32);
         }
       } catch (e) {
         this.plaintext = "Error: Invalid input";
