@@ -13,23 +13,19 @@
         <div class="flex space-x-4">
           <div>
             <input type="checkbox" id="lowercase" v-model="lowercase" />
-            <br>
-            <label for="lowercase">Include lowercase letters</label>
+            <label for="lowercase"> Include lowercase letters</label>
           </div>
           <div>
             <input type="checkbox" id="uppercase" v-model="uppercase" />
-            <br>
-            <label for="uppercase">Include uppercase letters</label>
+            <label for="uppercase"> Include uppercase letters</label>
           </div>
           <div>
             <input type="checkbox" id="numbers" v-model="numbers" />
-            <br>
-            <label for="numbers">Include numbers</label>
+            <label for="numbers"> Include numbers</label>
           </div>
           <div>
             <input type="checkbox" id="special" v-model="special" />
-            <br>
-            <label for="special">Include special characters</label>
+            <label for="special"> Include special characters</label>
           </div>
         </div>
       </div>
