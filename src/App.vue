@@ -20,7 +20,8 @@ const routes = ref([
   { name: "Countdown Timer", path: "/timer" },
   { name: "Reaction Time Test", path: "/reactiontime" },
   { name: "Current Time", path: "/currenttime" },
-  { name: "Base64 Converter", path: "/base64" }
+  { name: "Base64 Converter", path: "/base64" },
+  { name: "Base32 Converter", path: "/base32" }
 ]);
 
 routes.value.sort((a, b) => a.name.localeCompare(b.name));
