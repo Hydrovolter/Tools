@@ -23,6 +23,7 @@
           ></textarea>
         </div>
       </div>
+      <br>
       <div class="w-full">
         <label for="shift" class="block text-lg mb-1">Shift</label>
         <input
@@ -77,7 +78,7 @@
         shift: 3,
         caseSensitive: true,
         alphabet: "abcdefghijklmnopqrstuvwxyz",
-        includeForeignChars: false,
+        includeForeignChars: true,
       };
     },
     methods: {
