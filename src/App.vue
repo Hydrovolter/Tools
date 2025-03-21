@@ -27,8 +27,8 @@ const routes = ref([
   { name: "Caesar Cipher", path: "/caesarcipher" },
   { name: "Quadratics Solver", path: "/quadratics" },
   { name: "Calculator", path: "/calculator" },
-  { name: "Lorem Ipsum Generator", path: "/lorem"},
-  { name: "Difference Checker", path: "/diffchecker"}
+  { name: "Lorem Ipsum Generator", path: "/loremipsum"},
+  { name: "Difference Checker", path: "/differencechecker"}
 ]);
 
 routes.value.sort((a, b) => a.name.localeCompare(b.name));
