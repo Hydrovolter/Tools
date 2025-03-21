@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import QrcodeVue from "qrcode.vue"; // i love this package
+import QrcodeVue from "qrcode.vue";
 
 export default {
   components: {

@@ -36,7 +36,7 @@
     'Z': '--..',
     '0': '-----', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
     '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
-    ' ': '/' // Space separator in Morse code
+    ' ': '/' // space
   };
   
   const inverseMorseCodeMap = Object.fromEntries(Object.entries(morseCodeMap).map(([key, value]) => [value, key]));

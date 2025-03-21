@@ -14,7 +14,6 @@
 <script>
 import { ref } from "vue";
 import alarmSound from "@/assets/alarm.mp3";
-// BEEP BEEP BEEP
 
 export default {
   setup() {
@@ -54,7 +53,7 @@ export default {
       startTimer();
     };
 
-    const switchT = () => { // was gonna be named switch but thats reserved
+    const switchT = () => {
       if (timerType.value === "Work Time") {
         timerType.value = "Break Time";
         min.value = 5;

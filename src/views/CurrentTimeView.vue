@@ -12,7 +12,7 @@
 export default {
   data() {
     return {
-      currentTime: new Date().toLocaleTimeString(('en-GB')), //24 time based
+      currentTime: new Date().toLocaleTimeString(('en-GB')), // 24 time based
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       date: new Date().toLocaleDateString("en-US", { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
     };

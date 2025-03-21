@@ -30,7 +30,7 @@ const max = ref(100);
 const randomNumber = ref(null);
 
 const generateRandomNumber = () => {
-  if (min.value > max.value) { // because someone broke it
+  if (min.value > max.value) {
     alert("Minimum value cannot be greater than maximum value.");
     return;
   }

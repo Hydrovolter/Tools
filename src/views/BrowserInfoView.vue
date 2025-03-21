@@ -1,5 +1,5 @@
 <script setup>
-fetch("https://wtfismyip.com/json") // i love this api
+fetch("https://wtfismyip.com/json")
   .then((response) => response.json())
   .then((data) => {
     const ipAddrElement = document.getElementById("ipAddr");
