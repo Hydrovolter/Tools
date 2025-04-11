@@ -17,10 +17,10 @@
         v-model="timestampInput"
         @input="convertTimestamp"
         class="w-full p-2 border-0 rounded-lg bg-gray-800"
-        placeholder="Enter Unix Timestamp"
+        placeholder="Enter Unix Timestamp (ms or s)"
       />
       <div v-if="timestampResult" class="mt-4 p-4 rounded-lg w-full bg-gray-800">
-        <p><strong>Date & Time:</strong> {{ timestampResult }}</p>
+        <p><strong>Date & Time:</strong> {{ timestampResult }} <button @click="copyToClipboard(timestampResult)">📋</button></p>
         <p><strong>Timezone:</strong> {{ timezone }}</p>
         <p><strong>Relative Time:</strong> {{ relativeTime }}</p>
       </div>
@@ -39,7 +39,7 @@
       </div>
       <button @click="convertDateToUnix" class="mt-2 px-4 py-2 rounded-lg bg-blue-600 text-white">Convert</button>
       <div v-if="unixResult !== null" class="mt-4 p-4 rounded-lg w-full bg-gray-800">
-        <p><strong>Unix Timestamp:</strong> {{ unixResult }}</p>
+        <p><strong>Unix Timestamp:</strong> {{ unixResult }} <button @click="copyToClipboard(unixResult)">📋</button></p>
       </div>
     </div>
   </main>
@@ -63,65 +63,66 @@ export default {
       second: "",
       unixResult: null,
       interval: null,
+      relativeInterval: null,
     };
   },
   methods: {
     updateLiveTime() {
-      const now = new Date();
-      this.liveUnix = Math.floor(now.getTime() / 1000);
-      this.liveDate = now.toLocaleString();
+      this.liveUnix = Math.floor(Date.now() / 1000);
+      this.liveDate = new Date().toLocaleString();
     },
     convertTimestamp() {
-      const timestamp = Number(this.timestampInput);
-      if (!timestamp) {
-        this.timestampResult = "";
-        this.relativeTime = "";
-        return;
+      let input = Number(this.timestampInput);
+      if (isNaN(input)) return;
+      // Detect if timestamp is in milliseconds
+      if (input > 1e12) {
+        input = input;
+      } else {
+        input *= 1000;
       }
-      const date = new Date(timestamp * 1000);
+      const date = new Date(input);
       this.timestampResult = date.toLocaleString();
-      this.relativeTime = this.getRelativeTime(date);
-    },
-    getRelativeTime(date) {
-      const now = new Date();
-      const diff = Math.floor((now - date) / 1000);
-
-      if (diff < 5) return "Just now";
-      if (diff < 60) return `${diff} second${diff !== 1 ? "s" : ""} ago`;
-      if (diff < 3600) return `${Math.floor(diff / 60)} minute${Math.floor(diff / 60) !== 1 ? "s" : ""} ago`;
-      if (diff < 86400) return `${Math.floor(diff / 3600)} hour${Math.floor(diff / 3600) !== 1 ? "s" : ""} ago`;
-      if (diff < 2592000) return `${Math.floor(diff / 86400)} day${Math.floor(diff / 86400) !== 1 ? "s" : ""} ago`;
-      if (diff < 31536000) return `${Math.floor(diff / 2592000)} month${Math.floor(diff / 2592000) !== 1 ? "s" : ""} ago`;
-      return `${Math.floor(diff / 31536000)} year${Math.floor(diff / 31536000) !== 1 ? "s" : ""} ago`;
+      this.updateRelativeTime(input);
     },
     convertDateToUnix() {
-      const date = new Date(
-        this.year,
-        this.month - 1,
-        this.day,
-        this.hour,
-        this.minute,
-        this.second
-      );
-      if (isNaN(date.getTime())) {
-        this.unixResult = "Invalid date";
-      } else {
-        this.unixResult = Math.floor(date.getTime() / 1000);
-      }
+      const date = new Date(this.year, this.month - 1, this.day, this.hour, this.minute, this.second);
+      this.unixResult = date.getTime();
     },
+    updateRelativeTime(targetTimeMs = null) {
+      const now = Date.now();
+      const target = targetTimeMs !== null ? targetTimeMs : (Number(this.timestampInput) > 1e12 ? Number(this.timestampInput) : Number(this.timestampInput) * 1000);
+      const diff = target - now;
+      const absDiff = Math.abs(diff);
+      const seconds = Math.floor(absDiff / 1000) % 60;
+      const minutes = Math.floor(absDiff / (1000 * 60)) % 60;
+      const hours = Math.floor(absDiff / (1000 * 60 * 60)) % 24;
+      const days = Math.floor(absDiff / (1000 * 60 * 60 * 24));
+
+      const parts = [];
+      if (days) parts.push(`${days}d`);
+      if (hours) parts.push(`${hours}h`);
+      if (minutes) parts.push(`${minutes}m`);
+      if (seconds || parts.length === 0) parts.push(`${seconds}s`);
+
+      this.relativeTime = diff >= 0 ? `In ${parts.join(' ')}` : `${parts.join(' ')} ago`;
+    },
+    copyToClipboard(value) {
+      navigator.clipboard.writeText(value).then(() => {
+        alert('Copied to clipboard!');
+      });
+    }
   },
   mounted() {
-    this.updateLiveTime();
     this.interval = setInterval(this.updateLiveTime, 1000);
+    this.relativeInterval = setInterval(() => {
+      if (this.timestampInput) {
+        this.updateRelativeTime();
+      }
+    }, 1000);
   },
-  beforeUnmount() {
+  beforeDestroy() {
     clearInterval(this.interval);
+    clearInterval(this.relativeInterval);
   },
 };
 </script>
-
-<style scoped>
-input:focus {
-  outline: none;
-}
-</style>
