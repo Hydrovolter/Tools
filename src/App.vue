@@ -29,6 +29,7 @@ const routes = ref([
   { name: "Calculator", path: "/calculator" },
   { name: "Lorem Ipsum Generator", path: "/loremipsum" },
   { name: "Difference Checker", path: "/differencechecker" },
+  { name: "Unix Timestamp Converter", path: "/unixtimestamp" },
   { name: "Snowflake Deconstructor", path: "/snowflake" }
 ]);
 
