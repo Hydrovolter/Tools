@@ -28,7 +28,7 @@
           {
             name: 'Clear Local Storage',
             description: 'Clear your Local Storage on any website.',
-            code: "javascript:(function(){ localStorage.clear();var c = document.cookie.split("; "); for (i in c) { document.cookie =/^[^=]+/.exec(c[i])[0]+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT"; }; alert("Storage cleared! Please refresh to see changes."); })();"
+            code: "javascript:(function(){ localStorage.clear();var c = document.cookie.split('; '); for (i in c) { document.cookie =/^[^=]+/.exec(c[i])[0]+'=;expires=Thu, 01 Jan 1970 00:00:00 GMT'; }; alert('Storage cleared! Please refresh to see changes.'); })();"
           },
           {
             name: 'Tab Cloak',
